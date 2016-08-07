@@ -1,0 +1,49 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-9">
+
+        <div class="panel-style space forms">
+            <h3 class="heading-title">Takım Güncelleme</h3>
+            <div class="hr"></div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="input-f-wrapper">
+                            <img style="max-height:100px; max-width:100px;"
+                                 src="{{ asset('uploads/team_photos/') }}{{ current_team_photo }}">
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            {{ form_row(form.teamName) }}
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            {{ form_row(form.teamSlogan) }}
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Fotoğraf</label>
+                            <input type="file" class="form-control" name="team_photo">
+                        </div>
+
+                        <div class="buttons-wrapper">
+                            <a href="{{ path('list-team') }}" class="btn default">Tüm Takımları Listele</a>
+                            <a href="{{ path('create-team') }}" class="btn default">Takım Ekleme İşlemi</a>
+                            <input type="submit" class="btn blue pull-right" value="Kaydet Ve İlerle">
+                        </div>
+
+                        {% if success is defined %}
+                            <span style="color: green">* Takım başarılı bir şekilde güncellenmiştir</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
