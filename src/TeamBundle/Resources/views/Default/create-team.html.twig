@@ -1,0 +1,88 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-9">
+
+        {% if validations_errors is defined %}
+            <button class="btn btn-primary btn-lg btn-block red small" data-toggle="modal" data-target="#myModal">
+                Hatalar
+            </button>
+            <br>
+        {% endif %}
+
+        <div class="panel-style space forms">
+            <h3 class="heading-title">Yeni Takım Ekleme</h3>
+            <div class="hr"></div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="input-f-wrapper">
+                            <label>Takım Adı</label>
+                            <input type="text" placeholder="Takım Adı Giriniz" name="form[teamName]">
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Slogan</label>
+                            <input type="text" placeholder="Takım Slogan Metni Giriniz" name="form[teamSlogan]">
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Fotoğraf</label>
+                            <input type="file" class="form-control" name="team_photo">
+                        </div>
+
+                        <div class="buttons-wrapper">
+                            <a href="{{ path('list-team') }}" class="btn default">Tüm Takımları Listele</a>
+                            <input type="submit" class="btn blue pull-right" value="Kaydet Ve İlerle">
+                        </div>
+
+                        {% if success is defined %}
+                            <span style="color: green">* Takım başarılı bir şekilde eklenmiştir</span>
+                        {% endif %}
+
+                        {% if image_status == 'image_no' %}
+                            <span style="color: red;">* Yeni bir takım oluştururken resim yüklemek zorundasınız.</span>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Boş bırakılan alanlar mevcut</h4>
+                </div>
+
+                {% if validations_errors is defined %}
+                    <div class="modal-body">
+                        <ul>
+                            {% for error in validations_errors %}
+                                <li>{{ error.message }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                {% endif %}
+
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Kapat</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+{% endblock %}
