@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>HPT-Taskman Giriş Ekranı</title>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet"
+          href="//brick.a.ssl.fastly.net/Raleway:100,200,300,400,500,600,700,800,900,200i,300i,400i,500i">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/main/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('bundles/main/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="login">
+
+<form method="post">
+    <div id="login">
+        <div class="logo">
+            <a href="index.html"><img src="{{ asset('bundles/main/images/logo-login.png') }}" alt=""/></a>
+        </div>
+
+        <div class="wrapper-login">
+            <input type="text" placeholder="E-Mail Adresiniz" class="user" name="member_email"/>
+            <input type="password" placeholder="Şifreniz" class="password" name="member_password"/>
+        </div>
+
+        <input type="submit" class="login-button" value="Giriş">
+        {% if login_status == 'error' %}
+            <span style="color:red;">
+            Giriş Başarısız
+        </span>
+        {% endif %}
+
+    </div>
+</form>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script type='text/javascript'
+        src='{{ asset('bundles/main/scripts/jquery.prettycheckable/prettycheckable.js') }}'></script>
+
+<script type="text/javascript" src="{{ asset('bundles/main/scripts/jquery.nestable/jquery.nestable.js') }}"></script>
+
+<script src="{{ asset('bundles/main/custom.js') }}"></script>
+<script src="{{ asset('bundles/main/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>
