@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'MainBundle::layout-head.html.twig' %}
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+
+{% include 'MainBundle::layout-navbar.html.twig' %}
+
+<div id="wrapper">
+
+    <div id="body-overlay"></div>
+    {% include 'MainBundle::layout-sidebar.html.twig' %}
+
+    <div id="wrap">
+        <div class="container dashboard">
+            <div class="wrapper-dashboard">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'MainBundle::layout-profile.html.twig' %}
+                        {% include 'MainBundle::layout-custom-menu.html.twig' %}
+                    </div>
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <div class="row">
+        <div class="col-md-6 left">
+        </div>
+        <div class="col-md-6 right">
+            <span class="pull-right">Geliştirme ve tasarım <strong>HPT</strong> tarafından gerçekleştirilmiştir.<br/> Açık Kaynak Kodlu Proje Yönetim Uygulaması</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script type='text/javascript'
+        src='{{ asset('bundles/main/scripts/jquery.prettycheckable/prettycheckable.js') }}'></script>
+<script type="text/javascript"
+        src="{{ asset('bundles/main/scripts/jquery.easypiechart/jquery.easypiechart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/main/scripts/jquery.gmap/gmap3.js') }}"></script>
+
+
+<!--
+<script src="scripts/jquery.charts/morris.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+-->
+
+<!--
+<script type="text/javascript" src="scripts/jquery.nvdcharts/d3.v3.js"></script>
+<script type="text/javascript" src="scripts/jquery.nvdcharts/nvd.js"></script>
+-->
+
+<script src="{{ asset('bundles/main/custom.js') }}"></script>
+<script src="{{ asset('bundles/main/bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>

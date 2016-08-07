@@ -1,0 +1,101 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-9">
+        <div class="white-panel-widget clearfix m-sidebar m-bot-30 no-pad">
+            <div class="average-statistics-wrapper row no-margin">
+                <h3>Genel Uygulama İstatistik</h3>
+            </div>
+
+            <div class="wrapper-circle-charts">
+
+                <div class="wrp row no-margin">
+
+
+                    <div class="chart green" data-percent="52" data-barcolor="#2ABC68" data-linecap="butt"
+                         data-linewidth="12" data-trackcolor="#BFEBD1" data-size="150">
+                        <span class="percent">52</span>
+                        <p>Tamamlanmış</p>
+                        <canvas height="150" width="150"></canvas>
+                    </div>
+
+
+                    <div class="chart green" data-percent="52" data-barcolor="#2ABC68" data-linecap="butt"
+                         data-linewidth="12" data-trackcolor="#BFEBD1" data-size="150">
+                        <span class="percent">52</span>
+                        <p>Geliştirme</p>
+                        <canvas height="150" width="150"></canvas>
+                    </div>
+
+
+                    <div class="chart red" data-percent="88" data-barcolor="#E64D5F" data-linecap="butt"
+                         data-linewidth="12" data-trackcolor="#fff" data-size="150">
+                        <span class="percent">88</span>
+                        <p>Test</p>
+                        <canvas height="150" width="150"></canvas>
+                    </div>
+
+                    <div class="chart red" data-percent="88" data-barcolor="#E64D5F" data-linecap="butt"
+                         data-linewidth="12" data-trackcolor="#fff" data-size="150">
+                        <span class="percent">88</span>
+                        <p>Başarılı</p>
+                        <canvas height="150" width="150"></canvas>
+                    </div>
+
+                    <div class="chart red" data-percent="88" data-barcolor="#E64D5F" data-linecap="butt"
+                         data-linewidth="12" data-trackcolor="#fff" data-size="150">
+                        <span class="percent">88</span>
+                        <p>Hatalı</p>
+                        <canvas height="150" width="150"></canvas>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="timeline-wrapper dash">
+
+            <div class="timeline-post">
+                <ul>
+                    <li class="active"><a href="#">Not</a></li>
+                </ul>
+
+                <input type="text" placeholder="Notunu Ekle..." class="text">
+                <div class="options clearfix">
+                    <a href="#">Ekle</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="comment more-pad panel-style more">
+                    <p>
+                        <a href="#">Dawid Owsianka</a> has added 16 new tasks to the <a href="#">“Dashboard”</a>
+                        project.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="comment more-pad panel-style more">
+                    <p>
+                        <a href="#">Dawid Owsianka</a> has added 16 new tasks to the <a href="#">“Dashboard”</a>
+                        project.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="comment more-pad panel-style more">
+                    <p>
+                        <a href="#">Dawid Owsianka</a> has added 16 new tasks to the <a href="#">“Dashboard”</a>
+                        project.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
