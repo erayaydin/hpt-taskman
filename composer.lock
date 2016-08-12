@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "83882325a2cd553403cc9cddb200ca2c",
-    "content-hash": "3ee3de931fb1ef3ed119bebac3e0838f",
+    "hash": "160bf6a12b0bc70127e8e3e6a05af5cf",
+    "content-hash": "372c8ebf6a95f0fea23772b749b61cf8",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1085,6 +1085,49 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "seferov/deployer-bundle",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/seferov/deployerBundle.git",
+                "reference": "631861ff979300a5433a2ea3817a13d9c046a02b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/seferov/deployerBundle/zipball/631861ff979300a5433a2ea3817a13d9c046a02b",
+                "reference": "631861ff979300a5433a2ea3817a13d9c046a02b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/symfony": "~2.1|~3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Seferov\\DeployerBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Farhad Safarov",
+                    "homepage": "http://ferhad.in"
+                }
+            ],
+            "description": "Symfony Project Deployer",
+            "keywords": [
+                "deploy",
+                "deployer",
+                "deployment",
+                "symfony"
+            ],
+            "time": "2016-03-28 00:58:01"
         },
         {
             "name": "sensio/distribution-bundle",

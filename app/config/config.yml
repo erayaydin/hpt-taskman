@@ -69,3 +69,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+seferov_deployer:
+    servers:
+        production:
+            connection:
+                host: 46.101.253.198
+                username: root
+            git: https://github.com/semihsipahi/hpt-taskman.git
