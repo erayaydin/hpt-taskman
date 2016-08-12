@@ -1,4 +1,4 @@
-imports:
+,imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
@@ -73,8 +73,8 @@ swiftmailer:
 
 seferov_deployer:
     servers:
-        beta:
+        production:
             connection:
                 host: 46.101.253.198
                 username: root
-            git: git@github.com:semihsipahi/hpt-taskman.git
+            git: https://github.com/semihsipahi/hpt-taskman.git
