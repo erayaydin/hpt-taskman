@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new LoginBundle\LoginBundle(),
             new \Seferov\DeployerBundle\SeferovDeployerBundle(),
             new MemberBundle\MemberBundle(),
+            new ProjectBundle\ProjectBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

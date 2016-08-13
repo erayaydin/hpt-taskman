@@ -1,0 +1,48 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+    <div class="col-md-9">
+
+        <div class="panel-style space">
+
+            <h3 class="heading-title">Tüm Projeler Listesi</h3>
+
+            <table class="table simple">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Proje Adı</th>
+                    <th>Proje Tipi</th>
+                    <th>Takım Adı</th>
+                    <th>Eklenme Tarihi</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for project in projects %}
+                    <tr>
+                        <td>{{ project.pk_project_id }}</td>
+                        <td>{{ project.project_name }}</td>
+                        <td>{{ project.project_type_name }}</td>
+                        <td>{{ project.team_name }}</td>
+                        <td>{{ project.project_created_date|date("d/m/Y") }}</td>
+
+                        <td>
+                            <a href="{{ path('remove-project',{id:project.pk_project_id}) }}"
+                               onclick="return confirm('Silmek istediğinize eminmisiniz ?')">Sil</a> | <a
+                                    href="{{ path('edit-project',{id:project.pk_project_id}) }}">Güncelle</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="buttons-wrapper">
+                <a href="{{ path('create-project') }}" class="btn default">Proje Ekleme İşlemi</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

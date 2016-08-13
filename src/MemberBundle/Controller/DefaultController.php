@@ -111,7 +111,7 @@ class DefaultController extends Controller
         if ($form->isSubmitted()) {
             $member = $form->getData();
 
-            $member->setFkTeamId($request->request->get('team_id'));
+            //$member->setFkTeamId($request->request->get('team_id'));// not update to team.
             $member->setFkRoleId($request->request->get('role_id'));
             $member->setMemberModificationDate(new \DateTime());
 
@@ -122,9 +122,9 @@ class DefaultController extends Controller
                     'form' => $form->createView(),
                     'teams' => $this->getDoctrine()->getRepository('TeamBundle:Team')->all(),
                     'roles' => $this->getDoctrine()->getRepository('MemberBundle:Role')->all(),
-                    'success' => 'true',
                     'selected_team_id' => $member->getFkTeamId(),
-                    'selected_role_id' => $member->getFkRoleId()
+                    'selected_role_id' => $member->getFkRoleId(),
+                    'success' => 'true'
                 ]);
         }
 
