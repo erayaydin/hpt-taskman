@@ -1,0 +1,48 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+    <div class="col-md-9">
+
+        <div class="panel-style space">
+
+            <h3 class="heading-title">Tüm Üyeler Listesi</h3>
+
+            <table class="table simple">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ad Soyad</th>
+                    <th>Takım Adı</th>
+                    <th>Rol</th>
+                    <th>Eklenme Tarihi</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for member in members %}
+                    <tr>
+                        <td>{{ member.pk_member_id }}</td>
+                        <td>{{ member.member_name }} {{ member.member_surname }}</td>
+                        <td>{{ member.team_name }}</td>
+                        <td>{{ member.role_name }}</td>
+                        <td>{{ member.member_created_date|date("d/m/Y") }}</td>
+
+                        <td>
+                            <a href="{{ path('remove-member',{id:member.pk_member_id}) }}"
+                               onclick="return confirm('Silmek istediğinize eminmisiniz ?')">Sil</a> | <a
+                                    href="{{ path('edit-member',{id:member.pk_member_id}) }}">Güncelle</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="buttons-wrapper">
+                <a href="{{ path('create-member') }}" class="btn default">Üye Ekleme İşlemi</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+
+services:
+    app.member:
+        class:        MemberBundle\MemberBundle\PasswordManager
