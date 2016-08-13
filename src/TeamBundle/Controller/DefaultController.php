@@ -56,7 +56,7 @@ class DefaultController extends Controller
                     return $this->render(
                         'TeamBundle:Default:create-team.html.twig',
                         [
-                            'form' => $form,
+                            'form' => $form->createView(),
                             'validations_errors' => $errors,
                             'image_status' => $image_yes
                         ]);
