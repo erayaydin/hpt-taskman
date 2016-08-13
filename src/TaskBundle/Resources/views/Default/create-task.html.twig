@@ -1,0 +1,65 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-9">
+
+        <div class="panel-style space forms">
+            <h3 class="heading-title">Yeni Görev Ekleme</h3>
+            <div class="hr"></div>
+
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="input-f-wrapper">
+                            <label>Takım</label>
+                            <select class="form-control" name="team_id">
+
+                            </select>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Üye</label>
+                            <select class="form-control" name="project_type_id">
+
+                            </select>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Olay</label>
+                            <select class="form-control" name="project_type_id">
+
+                            </select>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Görev Başlık</label>
+                            <input type="text" placeholder="Görev Başlık Giriniz" name="">
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Görev Açıklaması</label>
+                            <textarea class="form-control" name=""></textarea>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Görev Yorum</label>
+                            <textarea class="form-control" name=""></textarea>
+                        </div>
+
+                        <div class="buttons-wrapper">
+                            <a href="{{ path('list-project') }}" class="btn default">Tüm Projeleri Listele</a>
+                            <a href="{{ path('create-team') }}" class="btn default">Yeni Takım Oluştur</a>
+
+                            <input type="submit" class="btn blue pull-right" value="Kaydet Ve İlerle">
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
