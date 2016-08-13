@@ -1,0 +1,73 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-9">
+
+        <div class="panel-style space forms">
+            <h3 class="heading-title">Yeni Proje Ekleme</h3>
+            <div class="hr"></div>
+
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="input-f-wrapper">
+                            <label>Takım</label>
+                            <select class="form-control" name="team_id" disabled>
+                                {% for team in teams %}
+                                    {% if selected_team_id == team.id %}
+                                        <option selected="selected" value="{{ team.id }}">{{ team.teamName }}</option>
+                                    {% else %}
+                                        <option value="{{ team.id }}">{{ team.teamName }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            <label>Proje Tipi</label>
+                            <select class="form-control" name="project_type_id">
+                                {% for project_type in project_types %}
+                                    {% if selected_project_type_id == project_type.pkProjectTypeId %}
+                                        <option selected="selected"
+                                                value="{{ project_type.pkProjectTypeId }}">{{ project_type.projectTypeName }}</option>
+                                    {% else %}
+                                        <option value="{{ project_type.pkProjectTypeId }}">{{ project_type.projectTypeName }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            {{ form_row(form.projectName) }}
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            {{ form_row(form.projectDescription) }}
+                        </div>
+
+                        <div class="input-f-wrapper">
+                            {{ form_row(form.projectProperty) }}
+                        </div>
+
+                        <div class="buttons-wrapper">
+                            <a href="{{ path('list-project') }}" class="btn default">Tüm Projeleri Listele</a>
+                            <a href="{{ path('create-team') }}" class="btn default">Yeni Takım Oluştur</a>
+
+                            <input type="submit" class="btn blue pull-right" value="Kaydet Ve İlerle">
+
+                        </div>
+
+
+                        {% if success is defined %}
+                            <span style="color: green">* Proje başarılı bir şekilde güncellenmiştir</span>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
