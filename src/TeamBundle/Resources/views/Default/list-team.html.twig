@@ -24,13 +24,14 @@
                         <td>{{ team.id }}</td>
                         <td>
                             <img style="max-height:50px; max-width:50px;"
-                                 src="{{ asset('uploads/team_photos/') }}{{ team.teamPhoto }}">
+                                 src="{{ asset('bundles/main/team-photo/') }}{{ team.teamPhoto }}">
                         </td>
                         <td>{{ team.teamName }}</td>
                         <td>{{ team.teamSlogan }}</td>
                         <td>{{ team.teamCreatedDate|date("d/m/Y") }}</td>
                         <td>
-                            <a href="{{ path('remove-team',{id:team.id}) }}" onclick="return confirm('Silmek istediğinize eminmisiniz ?')">Sil</a> | <a
+                            <a href="{{ path('remove-team',{id:team.id}) }}"
+                               onclick="return confirm('Silmek istediğinize eminmisiniz ?')">Sil</a> | <a
                                     href="{{ path('edit-team',{id:team.id}) }}">Güncelle</a>
                         </td>
 
