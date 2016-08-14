@@ -1,6 +1,7 @@
 <?php
 
 namespace MemberBundle\Repository;
+
 use MemberBundle\Entity\Member;
 
 /**
@@ -63,6 +64,21 @@ class MemberRepository extends \Doctrine\ORM\EntityRepository
                                             from
                                             tm_members as m inner join tm_teams as t on m.fk_team_id = t.pk_team_id
                                             inner join tm_roles as r on m.fk_role_id = r.pk_role_id');
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    public function getMembersByTeamId($teamId)
+    {
+        $this->em = $this->getEntityManager();
+        $connection = $this->em->getConnection();
+
+        $statement = $connection->prepare('select * from tm_members where fk_team_id = :teamId');
+
+        $statement->bindValue('teamId', $teamId);
+
         $statement->execute();
         $result = $statement->fetchAll();
 

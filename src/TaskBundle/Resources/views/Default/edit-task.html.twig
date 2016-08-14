@@ -1,0 +1,102 @@
+{% extends '@Main/layout.html.twig' %}
+
+    {% block body %}
+
+        <div class="col-md-9">
+
+
+            <div class="panel-style space forms">
+                <h3 class="heading-title">Görev Güncelleme</h3>
+                <div class="hr"></div>
+
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="input-f-wrapper">
+                                <label>Takım</label>
+                                <select class="form-control" name="team_id" disabled="disabled">
+                                    {% for team in teams %}
+                                        {% if selected_team_id == team.id %}
+                                            <option selected="selected"
+                                                    value="{{ team.id }}">{{ team.teamName }}</option>
+                                        {% else %}
+                                            <option value="{{ team.id }}">{{ team.teamName }}</option>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Üye</label>
+                                <select class="form-control" name="member_id">
+                                    {% for member in members %}
+                                        {% if selected_member_id == member.pk_member_id %}
+                                            <option selected="selected"
+                                                    value="{{ member.pk_member_id }}">{{ member.member_name }} {{ member.member_surname }}</option>
+                                        {% else %}
+                                            <option value="{{ member.pk_member_id }}">{{ member.member_name }} {{ member.member_surname }}</option>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Olay</label>
+                                <select class="form-control" name="action_id">
+                                    {% for action in actions %}
+                                        {% if selected_action_id == action.pkActionId %}
+                                            <option selected="selected"
+                                                    value="{{ action.pkActionId }}">{{ action.actionName }}</option>
+                                        {% else %}
+                                            <option value="{{ action.pkActionId }}">{{ action.actionName }}</option>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Öncelik</label>
+                                <select class="form-control" name="priority_id">
+                                    {% for priority in priorities %}
+                                        {% if selected_priority_id == priority.pkPriorityId %}
+                                            <option selected="selected"
+                                                    value="{{ priority.pkPriorityId }}">{{ priority.priorityName }}</option>
+                                        {% else %}
+                                            <option value="{{ priority.pkPriorityId }}">{{ priority.priorityName }}</option>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                {{ form_row(form.taskTitle) }}
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                {{ form_row(form.taskDescription) }}
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                {{ form_row(form.taskComment) }}
+                            </div>
+
+                            <div class="buttons-wrapper">
+                                <input type="submit" class="btn blue btn-sm col-md-12" value="Kaydet Ve İlerle">
+                                <a href="{{ path('list-task') }}" class="btn default btn-sm col-md-12">Tüm Görevleri Listele</a>
+                            </div>
+
+                            {% if success is defined %}
+                                <span style="color: green">* Görev başarılı bir şekilde güncellenmiştir.</span>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endblock %}

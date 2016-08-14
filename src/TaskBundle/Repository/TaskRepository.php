@@ -1,6 +1,7 @@
 <?php
 
 namespace TaskBundle\Repository;
+use TaskBundle\Entity\Task;
 
 /**
  * TaskRepository
@@ -10,4 +11,83 @@ namespace TaskBundle\Repository;
  */
 class TaskRepository extends \Doctrine\ORM\EntityRepository
 {
+    private $em;
+
+    public function getId($id)
+    {
+        return $this->getEntityManager()->getRepository('TaskBundle:Task')->find($id);
+    }
+
+    public function all()
+    {
+        return $this->getEntityManager()->getRepository('TaskBundle:Task')->findAll();
+    }
+
+    public function remove($id)
+    {
+        $this->em = $this->getEntityManager();
+
+        $task = $this->em->getRepository('TaskBundle:Task')->find($id);
+        $this->em->remove($task);
+        $this->em->flush();
+    }
+
+    public function add(Task $task)
+    {
+        $this->em = $this->getEntityManager();
+
+        $this->em->persist($task);
+        $this->em->flush();
+    }
+
+    public function update()
+    {
+        $this->em = $this->getEntityManager();
+        $this->em->flush();
+    }
+
+    public function getTaskDetails()
+    {
+        $this->em = $this->getEntityManager();
+        $connection = $this->em->getConnection();
+
+        $statement = $connection->prepare('select
+                                            task.pk_task_id,
+                                            task.task_title,
+                                            member.member_name,
+                                            member.member_surname,
+                                            action.action_name,
+                                            priority.priority_name,
+                                            task.task_is_active,
+                                            task.task_is_complete,
+                                            task.task_created_date
+                                                from tm_tasks as task inner join tm_members as member on task.fk_member_id = member.pk_member_id
+                                                inner join tm_actions as action on task.fk_action_id = action.pk_action_id
+                                                inner join tm_priorities as priority on task.fk_priority_id = priority.pk_priority_id');
+
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
+    public function getTeamDetailByTaskId($taskId)
+    {
+
+        $this->em = $this->getEntityManager();
+        $connection = $this->em->getConnection();
+
+        $statement = $connection->prepare('select 
+                                            team.pk_team_id,
+                                            member.pk_member_id
+                                            from tm_tasks as task inner join tm_members as member on task.fk_member_id = member.pk_member_id
+                                            inner join tm_teams as team on member.fk_team_id = team.pk_team_id
+                                            where task.pk_task_id = :taskId');
+
+        $statement->bindValue('taskId', $taskId);
+        $statement->execute();
+        $result = $statement->fetch();
+
+        return $result;
+    }
 }

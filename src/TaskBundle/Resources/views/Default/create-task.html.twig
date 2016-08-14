@@ -1,65 +1,167 @@
 {% extends '@Main/layout.html.twig' %}
 
-{% block body %}
+{% block head %}
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-    <div class="col-md-9">
+            $('#select-teams').on('change', function () {
 
-        <div class="panel-style space forms">
-            <h3 class="heading-title">Yeni Görev Ekleme</h3>
-            <div class="hr"></div>
+                var route = "{{ path('ajax-get-members-by-team', { team_id:'dynamic-team-id-content' }) }}";
+                var selected_team_id = $(this).val();
 
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-12">
+                $.ajax({
+                    type: 'GET',
+                    url: route.replace('dynamic-team-id-content', selected_team_id),
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.data.length > 0) {
+                            console.log(response);
+                            $('#select-members-content').css('display', 'block');
 
-                        <div class="input-f-wrapper">
-                            <label>Takım</label>
-                            <select class="form-control" name="team_id">
+                            var dynamic_select_html_content = "";
 
-                            </select>
-                        </div>
+                            $('#select-members').empty()
+                            for (var i = 0; response.data.length > i; i++) {
+                                dynamic_select_html_content += "<option value=" + response.data[i].pk_member_id + ">" + response.data[i].member_name + " " + response.data[i].member_surname + "</option>";
+                            }
 
-                        <div class="input-f-wrapper">
-                            <label>Üye</label>
-                            <select class="form-control" name="project_type_id">
+                            $('#select-members').append(dynamic_select_html_content);
+                            $('#content-not-members').css('display', 'none');
+                        }
+                        else {
+                            $('#select-members-content').css('display', 'none');
+                            $('#content-not-members').css('display', 'block');
+                        }
+                    }
+                });
 
-                            </select>
-                        </div>
+            });
 
-                        <div class="input-f-wrapper">
-                            <label>Olay</label>
-                            <select class="form-control" name="project_type_id">
-
-                            </select>
-                        </div>
-
-                        <div class="input-f-wrapper">
-                            <label>Görev Başlık</label>
-                            <input type="text" placeholder="Görev Başlık Giriniz" name="">
-                        </div>
-
-                        <div class="input-f-wrapper">
-                            <label>Görev Açıklaması</label>
-                            <textarea class="form-control" name=""></textarea>
-                        </div>
-
-                        <div class="input-f-wrapper">
-                            <label>Görev Yorum</label>
-                            <textarea class="form-control" name=""></textarea>
-                        </div>
-
-                        <div class="buttons-wrapper">
-                            <a href="{{ path('list-project') }}" class="btn default">Tüm Projeleri Listele</a>
-                            <a href="{{ path('create-team') }}" class="btn default">Yeni Takım Oluştur</a>
-
-                            <input type="submit" class="btn blue pull-right" value="Kaydet Ve İlerle">
-
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
+        });
+    </script>
 {% endblock %}
+
+    {% block body %}
+
+        <div class="col-md-9">
+
+            {% if validations_errors is defined %}
+                <button class="btn btn-primary btn-lg btn-block red small" data-toggle="modal" data-target="#myModal">
+                    Hatalar
+                </button>
+                <br>
+            {% endif %}
+
+            <div class="panel-style space forms">
+                <h3 class="heading-title">Yeni Görev Ekleme</h3>
+                <div class="hr"></div>
+
+                <div id="content-not-members" style="display: none;">
+                    <h4 class="mt-title">Seçtiğiniz takımda hiç üye bulunmamaktadır.</h4>
+                    <div class="hr"></div>
+                </div>
+
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="input-f-wrapper">
+                                <label>Takım</label>
+                                <select class="form-control" name="team_id" id="select-teams">
+                                    {% for team in teams %}
+                                        <option value="{{ team.id }}">{{ team.teamName }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper" style="display: none;" id="select-members-content">
+                                <label>Üye</label>
+                                <select class="form-control" name="member_id" id="select-members">
+
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Olay</label>
+                                <select class="form-control" name="action_id">
+                                    {% for action in actions %}
+                                        <option value="{{ action.pkActionId }}">{{ action.actionName }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Öncelik</label>
+                                <select class="form-control" name="priority_id">
+                                    {% for priority in priorities %}
+                                        <option value="{{ priority.pkPriorityId }}">{{ priority.priorityName }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Görev Başlık</label>
+                                <input type="text" placeholder="Görev Başlık Giriniz" name="form[taskTitle]">
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Görev Açıklaması</label>
+                                <textarea class="form-control" name="form[taskDescription]"></textarea>
+                            </div>
+
+                            <div class="input-f-wrapper">
+                                <label>Görev Yorum</label>
+                                <textarea class="form-control" name="form[taskComment]"></textarea>
+                            </div>
+
+                            <div class="buttons-wrapper">
+                                <a href="{{ path('list-task') }}" class="btn default btn-sm ">Tüm Görevleri Listele</a>
+                                <a href="{{ path('create-team') }}" class="btn default btn-sm ">Yeni Takım Oluştur</a>
+                                <a href="{{ path('create-project') }}" class="btn default btn-sm pull-right">Yeni Proje Oluştur</a>
+                                <a href="{{ path('create-member') }}" class="btn default btn-sm pull-right">Yeni Üye Oluştur</a>
+
+                                <input type="submit" class="btn blue btn-sm col-md-12"
+                                       value="Kaydet Ve İlerle">
+
+                            </div>
+
+                            {% if success is defined %}
+                                <span style="color: green">* Görev başarılı bir şekilde eklenmiştir</span>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Boş bırakılan alanlar mevcut</h4>
+                    </div>
+
+                    {% if validations_errors is defined %}
+                        <div class="modal-body">
+                            <ul>
+                                {% for error in validations_errors %}
+                                    <li>{{ error.message }}</li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    {% endif %}
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn default" data-dismiss="modal">Kapat</button>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    {% endblock %}

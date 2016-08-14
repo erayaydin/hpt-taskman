@@ -3,6 +3,7 @@
 namespace TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Task
@@ -46,6 +47,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="task_title", type="string", length=255)
+     * @Assert\NotBlank(message="Görev Başlık boş bırakılamaz")
      */
     private $taskTitle;
 
@@ -53,6 +55,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="task_description", type="string", length=255)
+     * @Assert\NotBlank(message="Görev Açıklama boş bırakılamaz")
      */
     private $taskDescription;
 
@@ -60,6 +63,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="task_comment", type="string", length=255)
+     * @Assert\NotBlank(message="Görev Yorum boş bırakılamaz")
      */
     private $taskComment;
 
@@ -69,6 +73,13 @@ class Task
      * @ORM\Column(name="task_created_date", type="datetime")
      */
     private $taskCreatedDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="task_modification_date", type="datetime")
+     */
+    private $taskModificationDate;
 
     /**
      * @var bool
@@ -260,6 +271,30 @@ class Task
     public function getTaskCreatedDate()
     {
         return $this->taskCreatedDate;
+    }
+
+    /**
+     * Set taskModificationDate
+     *
+     * @param \DateTime $taskModificationDate
+     *
+     * @return Task
+     */
+    public function setTaskModificationDate($taskModificationDate)
+    {
+        $this->taskModificationDate = $taskModificationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get taskModificationDate
+     *
+     * @return \DateTime
+     */
+    public function getTaskModificationDate()
+    {
+        return $this->taskModificationDate;
     }
 
     /**

@@ -1,0 +1,54 @@
+{% extends '@Main/layout.html.twig' %}
+
+{% block body %}
+    <div class="col-md-9">
+
+        <div class="panel-style space">
+
+            <h3 class="heading-title">Tüm Görevler Listesi</h3>
+
+            <table class="table simple">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Üye</th>
+                    <th>Başlık</th>
+                    <th>Olay</th>
+                    <th>Öncelik</th>
+                    <th>Durum</th>
+                    <th>Tamamlanma Durumu</th>
+                    <th>Eklenme Tarihi</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.pk_task_id }}</td>
+                        <td>{{ task.member_name }} {{ task.member_surname }}</td>
+                        <td>{{ task.task_title }}</td>
+                        <td>{{ task.action_name }}</td>
+                        <td>{{ task.priority_name }}</td>
+                        <td>{{ task.task_is_active|status }}</td>
+                        <td>{{ task.task_is_complete|complete }}</td>
+                        <td>{{ task.task_created_date|date("d/m/Y") }}</td>
+
+                        <td>
+                            <a href="{{ path('remove-task',{id:task.pk_task_id}) }}"
+                               onclick="return confirm('Silmek istediğinize eminmisiniz ?')">Sil</a> | <a
+                                    href="{{ path('edit-task',{id:task.pk_task_id}) }}">Güncelle</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="buttons-wrapper">
+                <a href="{{ path('create-task') }}" class="btn default">Görev Ekleme İşlemi</a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
