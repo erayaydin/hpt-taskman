@@ -2,7 +2,6 @@
 
 namespace LoginBundle\Controller;
 
-use LoginBundle\Entity\Member;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +26,7 @@ class DefaultController extends Controller
             $member_email = $request->request->get('member_email');
             $member_password = $request->request->get('member_password');
 
-            $result = $this->getDoctrine()->getRepository('LoginBundle:Member')->getMemberByEmailAndPassword($member_email, $member_password);
+            $result = $this->getDoctrine()->getRepository('MemberBundle:Member')->getMemberByEmailAndPassword($member_email, $member_password);
             if ($result) {
                 $session->start();
 
