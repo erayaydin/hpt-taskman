@@ -5,12 +5,17 @@ A Symfony project created on August 6, 2016, 11:52 pm.
 
 Install
 
-composer install
+-composer install
+
+- bin/console doctrine:database:create
+- bin/console doctrine:schema:create
+
 
 Run
 
-bin/console server:run or bin/console server:start
+- bin/console server:run or bin/console server:start
 
-Software Engineer Semih Sipahi
-semihsipahi@linux.com
+-- Software Engineer Semih Sipahi --
+
+-- semihsipahi@linux.com --
 
