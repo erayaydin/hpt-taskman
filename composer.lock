@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5be27da64d2b8835af35490231c1f221",
-    "content-hash": "f49f6c50cd77b13727d46fe5c2219ffb",
+    "hash": "160bf6a12b0bc70127e8e3e6a05af5cf",
+    "content-hash": "372c8ebf6a95f0fea23772b749b61cf8",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1085,47 +1085,6 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
-        },
-        {
-            "name": "rrb/deployer-bundle",
-            "version": "0.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rubenrubiob/deployer-bundle.git",
-                "reference": "bfc9dc3c11b432bb34ea143870b938a991ef77d3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rubenrubiob/deployer-bundle/zipball/bfc9dc3c11b432bb34ea143870b938a991ef77d3",
-                "reference": "bfc9dc3c11b432bb34ea143870b938a991ef77d3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Rrb\\DeployerBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rubén Rubio Barrera",
-                    "email": "ruben.rubio.barrera@gmail.com"
-                }
-            ],
-            "description": "A deployer for Symfony framework using Python fabric",
-            "keywords": [
-                "deployer",
-                "fabric",
-                "symfony"
-            ],
-            "time": "2016-06-26 09:44:28"
         },
         {
             "name": "seferov/deployer-bundle",
