@@ -7,8 +7,8 @@ A Symfony project created on August 6, 2016, 11:52 pm.
 Install
 
 - composer install
-- bin/console doctrine:database:create
-- bin/console doctrine:schema:create
+- bin/console doctrine:create:database
+- bin/console doctrine:create:schema
 
 
 Run
